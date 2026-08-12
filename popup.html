@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<title>리딤코드 입력기</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    width: 360px;
+    font-family: "Segoe UI", "Malgun Gothic", sans-serif;
+    font-size: 13px;
+    margin: 0;
+    padding: 12px;
+    color: #222;
+  }
+  h1 {
+    font-size: 15px;
+    margin: 0 0 10px;
+  }
+  label {
+    display: block;
+    font-weight: 600;
+    margin: 10px 0 4px;
+  }
+  input[type=text], textarea {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: inherit;
+  }
+  textarea {
+    resize: vertical;
+    min-height: 70px;
+  }
+  .row {
+    display: flex;
+    gap: 8px;
+  }
+  .row > div { flex: 1; }
+  .delay-hint {
+    font-size: 11px;
+    color: #777;
+    margin-top: 2px;
+  }
+  .buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  button {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  #startBtn { background: #2563eb; color: #fff; }
+  #startBtn:disabled { background: #93b4f0; cursor: default; }
+  #stopBtn { background: #e5484d; color: #fff; }
+  #stopBtn:disabled { background: #f2b8ba; cursor: default; }
+  .status {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #444;
+    min-height: 16px;
+  }
+  .log {
+    margin-top: 8px;
+    max-height: 160px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    border-radius: 4px;
+  }
+  .log-item {
+    padding: 6px 8px;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 12px;
+  }
+  .log-item:last-child { border-bottom: none; }
+  .log-item .code { font-weight: 600; }
+  .log-item .msg { color: #555; margin-top: 2px; }
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-left: 6px;
+  }
+  .badge.ok { background: #dcfce7; color: #166534; }
+  .badge.warn { background: #fef9c3; color: #854d0e; }
+  .badge.bad { background: #fee2e2; color: #991b1b; }
+  .badge.unknown { background: #e5e7eb; color: #374151; }
+  .notice {
+    margin-top: 12px;
+    font-size: 11px;
+    color: #888;
+    line-height: 1.5;
+    border-top: 1px solid #eee;
+    padding-top: 8px;
+  }
+</style>
+</head>
+<body>
+  <h1>리딤코드 입력기</h1>
+
+  <label for="siteUrl">쿠폰 입력 사이트 주소 (선택)</label>
+  <input type="text" id="siteUrl" placeholder="비워두면 현재 열려 있는 탭을 사용합니다" />
+
+  <label for="memberNumber">회원번호 / 계정정보</label>
+  <input type="text" id="memberNumber" placeholder="예: 회원번호, UID 등" />
+
+  <label for="coupons">쿠폰번호 (한 줄에 하나씩)</label>
+  <textarea id="coupons" placeholder="COUPON-CODE-1&#10;COUPON-CODE-2&#10;COUPON-CODE-3"></textarea>
+
+  <div class="row">
+    <div>
+      <label for="delayMin">최소 딜레이(초)</label>
+      <input type="text" id="delayMin" value="4" />
+    </div>
+    <div>
+      <label for="delayMax">최대 딜레이(초)</label>
+      <input type="text" id="delayMax" value="8" />
+    </div>
+  </div>
+  <div class="delay-hint">차단 방지를 위해 최소 3초 이상으로 강제되며, 10개마다 자동으로 긴 휴식이 추가됩니다.</div>
+
+  <div class="buttons">
+    <button id="startBtn">시작</button>
+    <button id="stopBtn" disabled>중지</button>
+  </div>
+
+  <div class="status" id="status"></div>
+  <div class="log" id="log"></div>
+
+  <div class="notice">
+    본 도구는 화면에 보이는 입력칸/버튼을 사람이 누르는 것과 동일하게 자동으로 채워 넣을 뿐이며, 캡차 우회나 탐지 회피 기능은 없습니다. 본인 소유 계정에만 사용하고, 각 게임사의 이용약관을 확인 후 책임 하에 사용하세요. 사이트 구조가 다르면 자동 인식이 실패할 수 있으며, 그 경우 즉시 중단됩니다.
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

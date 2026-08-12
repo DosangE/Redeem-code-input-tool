@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(where python *)",
+      "PowerShell(py --version)",
+      "PowerShell(python --version)",
+      "PowerShell(pip --version)",
+      "PowerShell(node --version)",
+      "PowerShell(npm --version)",
+      "PowerShell(winget --version)",
+      "PowerShell(winget search Python.Python 2>&1)",
+      "PowerShell(winget search Python.Python --source winget --accept-source-agreements 2>&1)",
+      "PowerShell(winget install --id Python.Python.3.12 --source winget --accept-source-agreements --accept-package-agreements -e 2>&1)"
+    ]
+  }
+}

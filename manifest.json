@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "리딤코드 입력기",
+  "version": "1.0.0",
+  "description": "게임 쿠폰(리딤코드) 입력 사이트에서 여러 개의 쿠폰코드를 속도 제한을 지키며 순차적으로 입력해주는 도우미 확장 프로그램",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "리딤코드 입력기"
+  },
+  "permissions": ["activeTab", "tabs", "storage", "scripting"],
+  "host_permissions": ["<all_urls>"]
+}
