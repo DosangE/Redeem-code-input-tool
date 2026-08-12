@@ -104,7 +104,6 @@ class RedeemApp:
 
     def _make_options(self):
         options = Options()
-        options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option(
             "prefs",
             {
