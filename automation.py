@@ -29,6 +29,9 @@ BLOCK_RE = re.compile(
 
 MAX_CONSECUTIVE_ISSUES = 3
 
+# 쿠폰 사이 최소 대기 시간(초). 이보다 짧게는 설정할 수 없다.
+MIN_DELAY = 1.0
+
 
 def _visible_text_inputs(driver):
     result = []
@@ -225,7 +228,7 @@ def _poll_for(fn, timeout=3.0, interval=0.2):
 
 
 def compute_delay(min_sec, max_sec):
-    lo = max(3.0, float(min_sec or 3))
+    lo = max(MIN_DELAY, float(min_sec or MIN_DELAY))
     hi = max(lo, float(max_sec or lo))
     return lo + random.random() * (hi - lo)
 
