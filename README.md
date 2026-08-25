@@ -27,9 +27,13 @@
 ```bash
 pip install -r requirements.txt
 pip install pyinstaller
-pyinstaller --onedir --windowed --name "RedeemCodeInputTool" app.py
+pyinstaller --onedir --windowed --name "RedeemCodeInputTool" --collect-submodules selenium app.py
 ```
 `dist\RedeemCodeInputTool\` 폴더 안에 exe가 새로 생성됩니다.
+
+`--collect-submodules selenium`은 반드시 필요합니다. Selenium은 `webdriver.Chrome` 같은 클래스를 실행 시점에 동적으로 불러오는데(lazy import), 이 옵션이 없으면 PyInstaller가 해당 모듈을 빌드에 포함하지 못해 실행 시 `ModuleNotFoundError: No module named 'selenium.webdriver.chrome.webdriver'` 오류가 납니다.
+
+(저장소의 `RedeemCodeInputTool.spec`에도 같은 설정이 들어 있어, `pyinstaller RedeemCodeInputTool.spec`로 빌드해도 동일한 결과가 나옵니다.)
 
 ---
 
